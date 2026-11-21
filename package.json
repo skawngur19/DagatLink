@@ -1,0 +1,12 @@
+{
+  "name": "barotac-fisher-safety-prototype",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Offline-first mobile safety and catch monitoring prototype for small-scale fisherfolk of Barotac Viejo, Iloilo",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": ["offline-first", "fisheries", "drrm", "prototype"],
+  "license": "UNLICENSED"
+}

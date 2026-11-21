@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MDRRMO Dashboard — Fisher Safety &amp; Catch Monitoring</title>
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body class="dash-page">
+
+<header class="topbar">
+  <div class="brand">
+    <div class="brand-mark">BV</div>
+    <div>
+      <div class="brand-title">Fisher Safety &amp; Catch Monitoring</div>
+      <div class="brand-sub">Municipality of Barotac Viejo · Iloilo</div>
+    </div>
+  </div>
+
+  <div class="topbar-right">
+    <span class="chip">Prototype</span>
+
+    <div class="clock" title="Simulated clock — advance time to reach an expected return">
+      <span class="sim-time" id="simTime">--:--</span>
+      <span class="offset-tag" id="offsetTag">live</span>
+      <button data-shift="15" title="Advance 15 minutes">+15m</button>
+      <button data-shift="30" title="Advance 30 minutes">+30m</button>
+      <button data-shift="60" title="Advance 1 hour">+60m</button>
+      <button data-reset-clock title="Back to the real time">reset</button>
+    </div>
+
+    <label class="role">Role
+      <select id="role">
+        <option value="mdrrmo" selected>MDRRMO — operations</option>
+        <option value="mao">MAO — fisheries</option>
+        <option value="admin">Administrator</option>
+      </select>
+    </label>
+
+    <a class="btn btn-light" href="app.html">Fisher App ↗</a>
+  </div>
+</header>
+
+<main class="dash">
+
+  <section class="kpis" id="kpis"></section>
+
+  <div class="grid">
+
+    <section class="panel span-7">
+      <header class="panel-head">
+        <h2>Live positions</h2>
+        <div class="panel-actions"><span class="sub" id="mapHint">—</span></div>
+      </header>
+      <div class="panel-body">
+        <div class="map-wrap">
+          <div class="map" id="map"></div>
+        </div>
+        <div class="map-legend">
+          <span><i class="dot" style="background:#0e7490"></i>At sea</span>
+          <span><i class="dot" style="background:#d99a06"></i>Within grace</span>
+          <span><i class="dot" style="background:#b42318"></i>Overdue</span>
+          <span><i class="dot" style="background:#64748b"></i>Returned</span>
+        </div>
+        <div class="map-caption">
+          Schematic chart. Positions are the last check-in fix received from the device; dashed lines join a trip's fixes.
+          A production build caches map tiles for offline use.
+        </div>
+      </div>
+    </section>
+
+    <section class="panel span-5">
+      <header class="panel-head">
+        <h2>Overdue alerts</h2>
+        <div class="panel-actions"><span class="sub">rule engine · 60 min grace</span></div>
+      </header>
+      <div class="panel-body tight scroll">
+        <div class="alert-list" id="alerts"></div>
+      </div>
+    </section>
+
+    <section class="panel span-7">
+      <header class="panel-head">
+        <h2>Trips</h2>
+        <div class="panel-actions"><span class="sub">active first, then latest return</span></div>
+      </header>
+      <div class="panel-body tight scroll">
+        <div id="trips"></div>
+      </div>
+    </section>
+
+    <section class="panel span-5">
+      <header class="panel-head">
+        <h2>Advisories</h2>
+        <div class="panel-actions"><span class="sub">published to all devices</span></div>
+      </header>
+      <div class="panel-body">
+        <div id="advFormWrap"></div>
+        <div style="border-top:1px solid #e2e8f0;margin:12px 0 8px"></div>
+        <div id="advList"></div>
+      </div>
+    </section>
+
+    <section class="panel span-7">
+      <header class="panel-head">
+        <h2>Catch summary</h2>
+        <div class="panel-actions" id="catchActions"></div>
+      </header>
+      <div class="panel-body tight">
+        <div id="catchBody"></div>
+      </div>
+    </section>
+
+    <section class="panel span-5">
+      <header class="panel-head">
+        <h2>Activity &amp; audit</h2>
+        <div class="panel-actions"><span class="sub">who viewed what</span></div>
+      </header>
+      <div class="panel-body">
+        <div class="log-list" id="audit"></div>
+        <div style="border-top:1px solid #e2e8f0;margin:12px 0 10px"></div>
+        <div id="settingsWrap"></div>
+      </div>
+    </section>
+
+  </div>
+
+  <p class="footer-note">
+    <span>Prototype for the study “An Offline-First Mobile Safety and Catch Monitoring Application with Voice Alerts for Small-Scale Municipal Fisherfolk in Barotac Viejo, Iloilo”. Demo data only.</span>
+    <span>Browser storage stands in for the backend API, the database and the SMS gateway.</span>
+  </p>
+</main>
+
+<div class="modal-back" id="modalBack">
+  <div class="modal">
+    <header class="modal-head" id="modalHead"></header>
+    <div class="modal-body" id="modalBody"></div>
+    <footer class="modal-foot" id="modalFoot"></footer>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script type="module" src="assets/dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Open dashboard in Chrome",
+      "type": "pwa-chrome",
+      "request": "launch",
+      "url": "http://localhost:3007/",
+      "webRoot": "${workspaceFolder}"
+    },
+    {
+      "name": "Open fisher app in Chrome",
+      "type": "pwa-chrome",
+      "request": "launch",
+      "url": "http://localhost:3007/app.html",
+      "webRoot": "${workspaceFolder}"
+    }
+  ]
+}

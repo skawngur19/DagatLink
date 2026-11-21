@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fisher App — Safety &amp; Catch Log (Prototype)</title>
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body class="app-page">
+
+<div class="device-stage">
+
+  <aside class="demo-panel">
+    <h1>Fisher application</h1>
+    <p class="sub">Android app prototype · Barotac Viejo, Iloilo</p>
+
+    <div class="demo-card">
+      <h2>Signal</h2>
+      <div class="sig-row">
+        <span>Network</span>
+        <div style="display:flex;align-items:center;gap:9px">
+          <span id="signalState" style="font-size:11.5px;color:#94a3b8">Online</span>
+          <div class="switch on" id="signalSwitch" role="switch" aria-label="Toggle network signal"></div>
+        </div>
+      </div>
+      <div class="sig-row">
+        <span id="pendingText" style="font-size:11.5px;color:#94a3b8">Everything is synced</span>
+        <button class="btn btn-sm btn-light" id="syncBtn">Sync now</button>
+      </div>
+    </div>
+
+    <div class="demo-card">
+      <h2>Demo script</h2>
+      <ol>
+        <li>Turn the signal <strong>off</strong>, then tap <em>I'm safe</em> and save a catch — both wait on the phone.</li>
+        <li>Turn the signal <strong>on</strong> — the queue uploads and the dashboard updates.</li>
+        <li>On the dashboard, press <strong>+60m</strong> twice to walk a trip past its expected return.</li>
+        <li>Publish a <strong>red advisory</strong> — the phone receives it and reads it aloud.</li>
+      </ol>
+    </div>
+
+    <div class="demo-card">
+      <h2>Notes</h2>
+      <ul>
+        <li>Voice uses the browser's Filipino voice. Hiligaynon prompt text is shown and spoken with the closest available voice; production replaces it with recorded audio.</li>
+        <li>Your answers are stored in this browser only.</li>
+      </ul>
+      <a href="index.html">← Open the MDRRMO dashboard</a>
+    </div>
+  </aside>
+
+  <div class="phone">
+    <div class="phone-status">
+      <div class="sig">
+        <span class="bars online" id="sigBars"><i></i><i></i><i></i><i></i></span>
+        <span id="sigLabel">Signal</span>
+      </div>
+      <span id="phoneClock">--:--</span>
+      <span class="pending" id="pendingBadge">synced</span>
+    </div>
+
+    <main class="phone-body" id="screen"></main>
+
+    <nav class="tabbar">
+      <button data-tab="home" class="active"><span class="ticon">🏠</span>Home</button>
+      <button data-tab="trip"><span class="ticon">⛵</span>Trip</button>
+      <button data-tab="catch"><span class="ticon">🐟</span>Catch</button>
+    </nav>
+
+    <div class="toast" id="phoneToast" style="bottom:74px;font-size:11.5px;padding:8px 13px"></div>
+  </div>
+
+</div>
+
+<script type="module" src="assets/fisherapp.js"></script>
+</body>
+</html>
